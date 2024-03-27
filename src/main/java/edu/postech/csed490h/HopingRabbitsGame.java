@@ -49,8 +49,7 @@ public class HopingRabbitsGame {
      * @return true if the position is valid, false otherwise
      */
     private boolean isValidPosition(int position) {
-        //return 0 <= position && position < numPositionInGame; // position starts from zero
-        return true;
+        return 0 <= position && position < numPositionInGame; // position starts from zero
     }
 
     /**
@@ -96,8 +95,20 @@ public class HopingRabbitsGame {
                 return true;
             }
         } else {
+            movableRabbitPosition = currentGameState.indexOf("xo_");
+            if (tryUpdatingRabbitPosition(rabbit, movableRabbitPosition + 2, movableRabbitPosition)) {
+                return true;
+            }
+        }
+
+        if (rabbit == Rabbit.O) {
             movableRabbitPosition = currentGameState.indexOf("_o");
-            if (tryUpdatingRabbitPosition(rabbit, movableRabbitPosition + 1, movableRabbitPosition)) {
+            if (tryUpdatingRabbitPosition(rabbit, movableRabbitPosition, movableRabbitPosition - 1)) {
+                return true;
+            }
+        } else {
+            movableRabbitPosition = currentGameState.indexOf("_xo");
+            if (tryUpdatingRabbitPosition(rabbit, movableRabbitPosition -2 , movableRabbitPosition)) {
                 return true;
             }
         }
@@ -132,7 +143,13 @@ public class HopingRabbitsGame {
      * @return true if the game is stuck, false otherwise
      */
     boolean isStuck() {
-        return true;
+        if(move(Rabbit.X)==false&&move(Rabbit.O)==false){
+            return true;
+        }else {
+            return true;
+        }
+
+
     }
 
     /**
@@ -144,12 +161,24 @@ public class HopingRabbitsGame {
     String getState() {
         StringBuilder state = new StringBuilder();
 
+        for (int position = 0; position < numPositionInGame; position++)
+        {
+            if(gameState[position] == Rabbit.X){
+                state.append('x');
+            }
+            else if(gameState[position] == Rabbit.O){
+                state.append('o');
+            }else{
+                state.append('_');
+            }
+
+        }
         return state.toString();
     }
 
     public static void main(String[] args) {
         var game = new HopingRabbitsGame(3);
-
+        //System.out.println("hello");
         System.out.println(game.getState());
         game.move(Rabbit.X);
         System.out.println(game.getState());
