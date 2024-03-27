@@ -7,6 +7,7 @@ package edu.postech.csed490h;
  * to swap the positions of the two teams by moving the rabbits. A rabbit can
  * move to an empty position or jump over a rival to an empty position.
  */
+
 public class HopingRabbitsGame {
     private final int numRabbitsOnEachTeam; // stores N
     private final int numPositionInGame; // stores 2N + 1
@@ -48,7 +49,8 @@ public class HopingRabbitsGame {
      * @return true if the position is valid, false otherwise
      */
     private boolean isValidPosition(int position) {
-        return 0 <= position && position < numPositionInGame; // position starts from zero
+        //return 0 <= position && position < numPositionInGame; // position starts from zero
+        return true;
     }
 
     /**
