@@ -93,24 +93,27 @@ public class HopingRabbitsGame {
             movableRabbitPosition = currentGameState.indexOf("x_");
             if (tryUpdatingRabbitPosition(rabbit, movableRabbitPosition, movableRabbitPosition + 1)) {
                 return true;
-            }
-        } else {
-            movableRabbitPosition = currentGameState.indexOf("xo_");
-            if (tryUpdatingRabbitPosition(rabbit, movableRabbitPosition + 2, movableRabbitPosition)) {
-                return true;
-            }
+            }else {
+                movableRabbitPosition = currentGameState.indexOf("xo_");
+              //  System.out.println(movableRabbitPosition);
+                if (tryUpdatingRabbitPosition(rabbit, movableRabbitPosition , movableRabbitPosition+2)) {
+                    return true;
+                }
+        }
         }
 
         if (rabbit == Rabbit.O) {
+
             movableRabbitPosition = currentGameState.indexOf("_o");
-            if (tryUpdatingRabbitPosition(rabbit, movableRabbitPosition, movableRabbitPosition - 1)) {
+
+            if (tryUpdatingRabbitPosition(rabbit, movableRabbitPosition+1, movableRabbitPosition )) {
                 return true;
-            }
-        } else {
-            movableRabbitPosition = currentGameState.indexOf("_xo");
-            if (tryUpdatingRabbitPosition(rabbit, movableRabbitPosition -2 , movableRabbitPosition)) {
-                return true;
-            }
+            }else {
+                movableRabbitPosition = currentGameState.indexOf("_xo");
+                if (tryUpdatingRabbitPosition(rabbit, movableRabbitPosition +2 , movableRabbitPosition)) {
+                    return true;
+                }
+        }
         }
 
         // Check if rabbit can jump (o/x and empty position in front of x/o)
@@ -177,12 +180,12 @@ public class HopingRabbitsGame {
     }
 
     public static void main(String[] args) {
-        var game = new HopingRabbitsGame(3);
+        var game = new HopingRabbitsGame(2);
         //System.out.println("hello");
         System.out.println(game.getState());
-        game.move(Rabbit.X);
-        System.out.println(game.getState());
         game.move(Rabbit.O);
+        System.out.println(game.getState());
+        game.move(Rabbit.X);
         System.out.println(game.getState());
     }
 
