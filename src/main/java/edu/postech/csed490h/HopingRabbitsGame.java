@@ -149,7 +149,7 @@ public class HopingRabbitsGame {
         if(move(Rabbit.X)==false&&move(Rabbit.O)==false){
             return true;
         }else {
-            return true;
+            return false;
         }
 
 
@@ -182,11 +182,19 @@ public class HopingRabbitsGame {
     public static void main(String[] args) {
         var game = new HopingRabbitsGame(2);
         //System.out.println("hello");
+        game.move(Rabbit.X);
+        //System.out.println(game.getState());
         System.out.println(game.getState());
         game.move(Rabbit.O);
         System.out.println(game.getState());
         game.move(Rabbit.X);
         System.out.println(game.getState());
+        game.move(Rabbit.X);
+        System.out.println(game.getState());
+        game.move(Rabbit.O);
+        System.out.println(game.getState());
+        System.out.println(game.isStuck());
+
     }
 
 }
